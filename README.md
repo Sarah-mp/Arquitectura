@@ -53,3 +53,23 @@ app.post('/file', (req,res)=>{
 
 
 export default app;
+
+
+FROM node:20
+
+WORKDIR /app
+
+COPY index.js /app/ 
+COPY package.json /app/
+COPY package-lock.json /app/
+
+ENV PORT=3000
+
+RUN cd /app
+RUN npm install
+
+EXPOSE $PORT
+
+ENTRYPOINT ["node", "index.js"]
+
+

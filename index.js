@@ -42,7 +42,7 @@ app.post('/file', (req, res) => {
     }
 
     // Ruta donde guardar el archivo
-    const uploadPath = path.join(__dirname, 'uploads', file.name);
+    const uploadPath = path.join('./', 'uploads', file.name);
 
     // Asegurarse de que la carpeta 'uploads' exista
     if (!fs.existsSync('uploads')) {
@@ -50,7 +50,7 @@ app.post('/file', (req, res) => {
     }
 
     // Guardar el archivo en la carpeta 'uploads'
-    file.mv(uploadPath, (err) => {
+    return file.mv(uploadPath, (err) => {
         if (err) {
             return res.status(500).send("Error al guardar el archivo");
         }
